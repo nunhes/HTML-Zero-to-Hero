@@ -63,3 +63,7 @@
 
 ### **Conclusión**:
 Estes son algúns consellos prácticos para aprender a programar de forma eficaz, destacando a importancia da constancia, a comprensión e a motivación. A autora, Angela Yu, comparte a súa experiencia como profesora e programadora para guiar aos lectores no seu camiño de aprendizaxe.
+
+---
+
+DAW🧊2025
