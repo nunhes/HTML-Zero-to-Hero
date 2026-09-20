@@ -1,0 +1,509 @@
+# Breve introdución a CSS
+
+Como colofón a esta introdución a HTML facemos unha introdución breve a **CSS** (Cascading Style Sheets), que é a linguaxe usada para para describir como os documentos son presentados visualmente, e como se aplican e organizan os estilos. 
+
+CSS é relativamente fácil de entender, pero pode ser intimidante pola cantidade de propiedades que podemos chegar a manipular.
+
+Despois, profundaremos en conceptos clave como os tipos de CSS, marxes, recheos, bordes e o modelo de caixa.
+
+---
+
+## **1. Introdución a CSS**
+
+CSS é unha linguaxe que se usa para definir a presentación e o deseño dun documento HTML. Permite controlar aspectos como cores, fontes, espazado, tamaño, posición e moito máis. CSS funciona en conxunto con HTML para crear páxinas web visualmente atractivas e ben estruturadas.
+
+### **Exemplo básico**:
+```html
+<!DOCTYPE html>
+<html lang="gl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exemplo CSS</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+    }
+    h1 {
+      color: blue;
+    }
+  </style>
+</head>
+<body>
+  <h1>Ola Mundo!</h1>
+  <p>Este é un exemplo básico de CSS.</p>
+</body>
+</html>
+```
+
+---
+
+## **2. Tipos de CSS**
+
+Hai tres formas principais de aplicar CSS a un documento HTML:
+
+
+### **a) CSS en liña**
+Podes escribir os teus estilos directamente en liña en cada elemento, pero esta NON é UNHA BOA IDEA a maioría das veces. O CSS aplícase directamente a un elemento HTML usando o atributo `style`. É un método nada recomendable.
+
+- **Exemplo**:
+  ```html
+  <h1 style="color: blue;">Ola Mundo!</h1>
+  ```
+
+
+### **b) CSS interno**
+Podes escribir os teus estilos dentro dun elemento ``<style>``. Así o CSS defínese dentro dunha etiqueta `<style>` no `<head>` do documento HTML. Isto é sinxelo, pero fai imposible compartir estilos entre documentos. Útil en pequenos proxectos ou paxinas moi sinxelas, en xeral é un método moi pouco recomendable. 
+
+- **Exemplo**:
+  ```html
+  <style>
+    h1 {
+      color: blue;
+    }
+  </style>
+  ```
+
+### **c) CSS externo**
+O CSS defínese ao completo nun arquivo externo coa extensión `.css` e vincúlase ao HTML usando a etiqueta `<link>` na cabeceira do teu documento html. É o método recomendado na case totalidade dos casos.
+
+- **Exemplo**:
+  ```html
+  <head>
+      <title>Páxina web</title>
+      <link rel="stylesheet" href="estilos.css">
+  </head>
+  
+  ```
+  
+  **estilos.css**:
+  ```css
+  h1 {
+    color: blue;
+  }
+  ```
+
+---
+
+> Vexamos agora os conceptos básicos das **regras CSS**, así como os conceptos de **cascada**, **herdanza** e **especificidade**, que son fundamentais para entender como funciona CSS.
+
+---
+
+## **3. Regras CSS**
+
+Unha **regra CSS** é un bloque de código que define como se deben aplicar estilos a un ou máis elementos HTML. Unha regra CSS está composta por:
+
+- **Selector**: Indica a qué elementos se aplica o estilo.
+- **Propiedades**: Define qué aspecto se vai cambiar (por exemplo, `color`, `font-size`, `margin`).
+- **Valores**: Especifica o valor da propiedade (por exemplo, `red`, `16px`, `20px`).
+
+Exemplo dunha regra CSS:
+```css
+p {
+  color: blue;
+  font-size: 16px;
+}
+```
+- **Selector**: `p` (aplica a todos os elementos `<p>`).
+- **Propiedades**: `color` e `font-size`.
+- **Valores**: `blue` e `16px`.
+
+---
+
+## **4. Tipos de selectores CSS**
+
+Os selectores son a parte da regra CSS que define a qué elementos se aplican os estilos. Aquí tes algúns dos tipos máis comúns:
+
+### **Selectores básicos**
+- **Selector de tipo**: Selecciona elementos polo seu nome.
+  ```css
+  p {
+    color: red;
+  }
+  ```
+- **Selector de clase**: Selecciona elementos cunha clase específica (usa un punto `.`).
+  ```css
+  .destacado {
+    background-color: yellow;
+  }
+  ```
+- **Selector de ID**: Selecciona un elemento cun ID específico (usa un `#`).
+  ```css
+  #cabezallo {
+    font-size: 24px;
+  }
+  ```
+
+### **Selectores avanzados**
+- **Selector descendente**: Selecciona elementos que están dentro doutros elementos.
+  ```css
+  div p {
+    color: green;
+  }
+  ```
+- **Selector de fillo directo**: Selecciona elementos que son fillos directos doutro elemento.
+  ```css
+  ul > li {
+    list-style: none;
+  }
+  ```
+- **Selector de atributo**: Selecciona elementos baseados nun atributo ou valor de atributo.
+  ```css
+  a[target="_blank"] {
+    color: purple;
+  }
+  ```
+
+### **Pseudo-clases e pseudo-elementos**
+- **Pseudo-clases**: Seleccionan elementos en estados específicos.
+  ```css
+  a:hover {
+    color: orange;
+  }
+  ```
+- **Pseudo-elementos**: Seleccionan partes específicas dun elemento.
+  ```css
+  p::first-line {
+    font-weight: bold;
+  }
+  ```
+
+---
+
+## **5. A cascada en CSS**
+
+A **cascada** é o proceso polo cal o navegador decide qué estilos aplicar cando hai múltiples regras que afectan ao mesmo elemento. A cascada funciona seguindo esta orde de prioridade:
+
+1. **Orde de aparición**: Se dúas regras teñen a mesma especificidade, a última regra declarada no CSS é a que se aplica.
+2. **Especificidade**: As regras máis específicas teñen prioridade sobre as menos específicas.
+3. **Importancia**: As regras con `!important` teñen a máxima prioridade (aínda que non é recomendable abusar deste mecanismo).
+
+Exemplo de cascada:
+```css
+p {
+  color: red; /* Aplicarase se non hai regras máis específicas */
+}
+
+.destacado {
+  color: blue; /* Aplicarase porque é máis específico */
+}
+
+#cabezallo {
+  color: green; /* Aplicarase porque é aínda máis específico */
+}
+```
+
+---
+
+## **6. A herdanza en CSS**
+
+A **herdanza** é o proceso polo cal os elementos fillos herdan estilos dos seus elementos pais. Non todas as propiedades CSS son herdables, pero algunhas como `color`, `font-family`, e `font-size` sí que o son.
+
+Exemplo de herdanza:
+```html
+<div style="color: blue;">
+  <p>Este texto será azul porque herda o estilo do div.</p>
+</div>
+```
+
+### **Propiedades non herdables**
+Algunhas propiedades, como `margin`, `padding`, e `border`, non se herdan. Para aplicar estes estilos a elementos fillos, debes especificalos directamente.
+
+---
+
+## **7. A especificidade en CSS**
+
+A **especificidade** é o mecanismo que determina qué regra CSS se aplica cando hai conflitos entre regras. A especificidade calcúlase baseándose no tipo de selector:
+
+- **Inline styles** (estilos en liña): `1000` puntos.
+- **IDs**: `100` puntos por cada ID.
+- **Clases, pseudo-clases e atributos**: `10` puntos por cada un.
+- **Elementos e pseudo-elementos**: `1` punto por cada un.
+
+Exemplo de especificidade:
+```css
+p {
+  color: red; /* Especificidade: 1 */
+}
+
+.destacado {
+  color: blue; /* Especificidade: 10 */
+}
+
+#cabezallo {
+  color: green; /* Especificidade: 100 */
+}
+
+p.destacado {
+  color: purple; /* Especificidade: 11 (1 + 10) */
+}
+```
+
+### **Como se calcula a especificidade**
+- `p` → 1 punto.
+- `.destacado` → 10 puntos.
+- `#cabezallo` → 100 puntos.
+- `p.destacado` → 1 (elemento) + 10 (clase) = 11 puntos.
+
+---
+
+## **8. Marxes, recheos e bordes**
+
+Estes son conceptos fundamentais en CSS que controlan o espazado e a aparencia dos elementos.
+
+### **a) Marxes (`margin`)**
+As marxes son o espazo exterior ao redor dun elemento. Pódense definir para cada lado (arriba, dereita, abaixo, esquerda) ou de forma abreviada.
+
+- **Exemplo**:
+  ```css
+  div {
+    margin-top: 10px;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+  }
+  ```
+  Ou de forma abreviada:
+  ```css
+  div {
+    margin: 10px 20px; /* arriba/abaixo: 10px, dereita/esquerda: 20px */
+  }
+  ```
+
+### **b) Recheos (`padding`)**
+Os recheos son o espazo interior dun elemento, entre o contido e o borde. Tamén se poden definir para cada lado ou de forma abreviada.
+
+- **Exemplo**:
+  ```css
+  div {
+    padding-top: 10px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+  }
+  ```
+  Ou de forma abreviada:
+  ```css
+  div {
+    padding: 10px 20px; /* arriba/abaixo: 10px, dereita/esquerda: 20px */
+  }
+  ```
+
+### **c) Bordes (`border`)**
+Os bordes son liñas que rodean un elemento. Pódense definir en grosor, estilo e cor.
+
+- **Exemplo**:
+  ```css
+  div {
+    border-width: 2px;
+    border-style: solid;
+    border-color: black;
+  }
+  ```
+  Ou de forma abreviada:
+  ```css
+  div {
+    border: 2px solid black;
+  }
+  ```
+
+---
+
+## **9. Modelo de caixa (Box Model)**
+
+O modelo de caixa é un concepto fundamental en CSS que describe como se estrutura cada elemento HTML visualmente. Cada elemento é unha caixa composta por catro capas:
+
+1. **Contido (Content)**: O contido real do elemento (texto, imaxe, etc.).
+2. **Recheo (Padding)**: O espazo interior entre o contido e o bordo.
+3. **Borde (Border)**: A liña que rodea o recheo -*padding*-, (se se define, se non rodeara o contido).
+4. **Marxe (Margin)**: O espazo exterior ao redor do borde, e que separa o elemento doutros elementos.
+2. **Recheo (Padding)**: O espazo interior entre o contido e o bordo.
+3. **Borde (Border)**: A liña que rodea o recheo -*padding*-, (se se define, se non rodeara o contido).
+4. **Marxe (Margin)**: O espazo exterior ao redor do borde, e que separa o elemento doutros elementos.
+
+### **Exemplo visual**:
+```
++---------------------------+
+|          Margin           |
+|  +---------------------+  |
+|  |       Border        |  |
+|  |  +--------------+   |  |
+|  |  |   Padding    |   |  |
+|  |  |  +--------+  |   |  |
+|  |  |  | Content|  |   |  |
+|  |  |  +--------+  |   |  |
+|  |  +--------------+   |  |
+|  +---------------------+  |
++---------------------------+
+```
+
+### **Exemplo práctico**:
+
+```css
+div {  
+  width: 300px;            /* Ancho do contido */  
+  padding: 20px;           /* Incremento espazo interior */  
+  border: 2px solid black; /* Bordo */  
+  margin: 10px;            /* Espazo exterior */  
+}  
+```
+
+
+```css
+div {  
+  width: 300px;            /* Ancho do contido */  
+  padding: 20px;           /* Incremento espazo interior */  
+  border: 2px solid black; /* Bordo */  
+  margin: 10px;            /* Espazo exterior */  
+}  
+```
+
+```html
+<div style="width: 300px; padding: 20px; border: 2px solid black; margin: 10px;">
+<div style="width: 300px; padding: 20px; border: 2px solid black; margin: 10px;">
+  Este é un exemplo de modelo de caixa.
+</div>
+```
+
+**Importancia do modelo de caixa:**
+
+- Permite calcular o tamaño real dun elemento (`width` + `padding` + `border`).
+- Controla o espazado e a disposición en páxinas web (crucial para deseños responsivos).
+
+**💡 Consello:** Usa `box-sizing: border-box;` para que o `padding` e o `border` non aumenten o tamaño total do elemento.
+
+**Importancia do modelo de caixa:**
+
+- Permite calcular o tamaño real dun elemento (`width` + `padding` + `border`).
+- Controla o espazado e a disposición en páxinas web (crucial para deseños responsivos).
+
+**💡 Consello:** Usa `box-sizing: border-box;` para que o `padding` e o `border` non aumenten o tamaño total do elemento.
+
+---
+
+## **10. Propiedade `box-sizing`**
+
+A propiedade `box-sizing` controla como se calcula o tamaño total dun elemento. Os valores máis comúns son:
+
+- **`content-box`** (predeterminado): O ancho e alto só inclúen o contido. O recheo e o borde engádense ao tamaño total.
+- **`border-box`**: O ancho e alto inclúen o contido, o recheo e o borde.
+
+- **Exemplo**:
+  ```css
+  div {
+    box-sizing: border-box;
+    width: 200px;
+    padding: 20px;
+    border: 2px solid black;
+  }
+  ```
+
+---
+
+## **11. Resumo**
+- **CSS**: Linguaxe para dar estilo e deseño ás páxinas web.
+- **Tipos de CSS**: Interno, externo e en liña.
+- **Marxes (`margin`)**: Espazo exterior ao redor dun elemento.
+- **Recheos (`padding`)**: Espazo interior ao redor do contido.
+- **Bordes (`border`)**: Liñas que rodean o recheo.
+- **Modelo de caixa**: Contido, recheo, borde e marxe.
+- **`box-sizing`**: Controla como se calcula o tamaño total dun elemento.
+
+---
+
+## **Exercicio práctico**
+
+### **Obxectivo**
+
+Practicar a creación de regras CSS, entender a cascada, a herdanza e a especificidade.
+
+### **Instrucións**
+
+1. **Crea un arquivo HTML** básico con varios elementos:
+   - Un título `<h1>`.
+   - Un parágrafo `<p>`.
+   - Unha lista `<ul>` con varios elementos `<li>`.
+   - Un enlace `<a>`.
+
+2. **Engade estilos CSS**:
+   - Define un estilo global para todos os elementos `<p>`.
+   - Engade unha clase `.destacado` e aplícaa a un dos elementos `<p>`.
+   - Usa un ID `#especial` para aplicar un estilo único a un elemento `<li>`.
+   - Define un estilo para os enlaces `<a>` e cambia o estilo cando se pasa o rato por riba (`:hover`).
+
+3. **Proba a cascada e a especificidade**:
+   - Define dúas regras para o mesmo elemento e observa cal se aplica.
+   - Usa unha regra con `!important` e observa como afecta á cascada.
+
+4. **Observa a herdanza**:
+   - Define un estilo no elemento `<body>` e observa como se herda nos elementos fillos.
+
+### **Exemplo de solución**
+
+```html
+<!DOCTYPE html>
+<html lang="gl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Práctica de CSS</title>
+  <style>
+    /* Estilo global para todos os parágrafos */
+    p {
+      color: red;
+    }
+
+    /* Clase destacado */
+    .destacado {
+      color: blue;
+    }
+
+    /* ID especial */
+    #especial {
+      color: green;
+    }
+
+    /* Estilo para enlaces */
+    a {
+      color: purple;
+    }
+
+    /* Cambio de estilo ao pasar o rato */
+    a:hover {
+      color: orange;
+    }
+
+    /* Herdanza */
+    body {
+      font-family: Arial, sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <h1>Práctica de CSS</h1>
+  <p>Este é un parágrafo normal.</p>
+  <p class="destacado">Este parágrafo ten unha clase destacado.</p>
+  <ul>
+    <li>Elemento 1</li>
+    <li id="especial">Elemento 2 (especial)</li>
+    <li>Elemento 3</li>
+  </ul>
+  <a href="#">Enlace de exemplo</a>
+</body>
+</html>
+```
+
+---
+
+## **Conclusión**
+
+Este exercicio axúdache a practicar a creación de regras CSS e a entender como funcionan a cascada, a herdanza e a especificidade. Espero que che sexa útil! 😊
+
+
+---
+
+DAW🧊2026
+
+#css
+#DAW
