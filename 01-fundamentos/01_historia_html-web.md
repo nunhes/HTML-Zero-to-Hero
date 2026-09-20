@@ -4,15 +4,17 @@
 - **1991**   Tim Berners-Lee crea HTML como parte do proxecto World Wide Web.
 - **1993**   Dave Raggett redacta HTML+
 - **1995**   HTML Working Group define HTML 2.0, a primeira versión estándar de HTML.
-- **1997**   W3C Recommendation: HTML 3.2, se introduce o soporte para táboas, applets e texto arredor de imaxes.
-- **1999**   W3C Recommendation: HTML 4.01, lanzado con melloras en accesibilidade e soporte para follas de estilo (CSS).
+- **1997**   W3C Recommendation: HTML 3.2, se introduce o soporte para táboas, miniaplicativos (*applets*) e fluxo de texto arredor das imaxes.
+- **1999**   W3C Recommendation: HTML 4.01, lanzado con melloras en accesibilidade e compatibilidade con follas de estilo(CSS) e scripts.
 - **2000**   W3C Recommendation: XHTML 1.0, (HTML baseado en XML) é lanzado para facer HTML máis estrito e compatible con XML.
 - **2008**   WHATWG publica o primeiro borrador público de HTML5
 - **2012**   WHATWG HTML5 Living Standard
-- **2014**   W3C Recommendation: HTML5, , introduce novas etiquetas semánticas como `<header>`, `<footer>`, `<article>`, e soporte multimedia con `<audio>` e `<video>`.
+- **2014**   W3C Recommendation: HTML5, , introduce novas etiquetas semánticas como `<header>`, `<footer>`, `<article>`,… para mellorar a estrutura e accesibilidade do código; soporte nativo multimedia con `<audio>` e `<video>`, e novas API (xeolocalización, canvas, localStorage,…)
 - **2016**   W3C Candidate Recommendation: HTML5.1
 - **2017**   W3C Recommendation: HTML5.1 2nd Edition
 - **2017**   W3C Recommendation: HTML5.2
+
+Hai  quen fala dun suposto "HTML6" aínda que non é un estándar oficial. Se emprega ás veces para facer referencia a novas características propostas como elementos personalizados mellorados ou integración de microdatos.
 
 ### Fitos de HTML5
 
@@ -72,8 +74,3 @@ Si estás interesado en seguir as novedades, recoméndoche revisar:
 ---
 
 ### :tada:
-
-DAW🧊2026
-
-#html
-#DAW

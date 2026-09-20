@@ -1,2 +1,17 @@
 /avaliacion.md
 /001.md
+
+# MkDocs build output
+site/
+
+# Typora cache - ficheiros con nomes de URL codificados en hex (moi longos)
+**/assets/6874747*
+**/assets/687474*
+
+# Scripts e ficheiros de traballo interno
+mover-ficheiros.bat
+reestruturar.ps1
+github_HTMLZEROTOHERO.md
+REESTRUTURACION_COMPLETADA.md
+ANALISE_CRITICA.md
+PLAN_REESTRUTURACION.md
